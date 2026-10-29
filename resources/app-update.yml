@@ -1,0 +1,4 @@
+owner: for-tristan
+repo: aether-browser
+provider: github
+updaterCacheDirName: aether-browser-updater
