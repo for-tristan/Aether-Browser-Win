@@ -10,6 +10,7 @@
   <a href="../../releases/latest"><img src="https://img.shields.io/badge/Download-Latest%20Release-blue?style=for-the-badge" alt="Download"></a>
   <a href="../../issues"><img src="https://img.shields.io/badge/Report-Bug-red?style=for-the-badge" alt="Report Bug"></a>
   <a href="../../issues"><img src="https://img.shields.io/badge/Request-Feature-green?style=for-the-badge" alt="Request Feature"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge" alt="License" /></a>
 </p>
 
 
