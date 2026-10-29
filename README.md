@@ -10,6 +10,7 @@
   <a href="../../releases/latest"><img src="https://img.shields.io/badge/Download-Latest%20Release-blue?style=for-the-badge" alt="Download"></a>
   <a href="../../issues"><img src="https://img.shields.io/badge/Report-Bug-red?style=for-the-badge" alt="Report Bug"></a>
   <a href="../../issues"><img src="https://img.shields.io/badge/Request-Feature-green?style=for-the-badge" alt="Request Feature"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge" alt="License" /></a>
 </p>
 
 
@@ -20,7 +21,7 @@
 
 ## Overview
 
-Aether is a Lightweight browser that feels alive.small in size quick and low ram usage.
+Aether is a Lightweight browser that feels alive. small in size quick and low ram usage.
 
 No clutter. No noise. and no bloat.
 
@@ -86,6 +87,19 @@ Found a bug? Want to request a feature? [Open an issue](../../issues) and let us
 
 ---
 
+## License - Legal Disclaimer - Collaborations 
+
+ - Users can view the source for personal/educational reference only
+ - Users can download and install the browser for personal use
+ - No redistribution : can't republish, fork, mirror, or host the code
+ - No derivative works : can't modify, port, or adapt it
+ - No commercial use : can't sell it or use it in a paid product
+ - No contributions : all development is exclusively by you
+ - No reverse engineering of compiled binaries
+ - No using the "Aether" name for endorsement without permission
+ - Third-party assets are acknowledged as not covered by this license
+
+---
 
 <div align="center">
 
