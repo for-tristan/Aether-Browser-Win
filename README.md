@@ -87,6 +87,19 @@ Found a bug? Want to request a feature? [Open an issue](../../issues) and let us
 
 ---
 
+## License - Legal Disclaimer - Collaborations 
+
+ - Users can view the source for personal/educational reference only
+ - Users can download and install the browser for personal use
+ - No redistribution : can't republish, fork, mirror, or host the code
+ - No derivative works : can't modify, port, or adapt it
+ - No commercial use : can't sell it or use it in a paid product
+ - No contributions : all development is exclusively by you
+ - No reverse engineering of compiled binaries
+ - No using the "Aether" name for endorsement without permission
+ - Third-party assets are acknowledged as not covered by this license
+
+---
 
 <div align="center">
 
