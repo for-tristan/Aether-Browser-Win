@@ -20,7 +20,7 @@
 
 ## Overview
 
-Aether is a Lightweight browser that feels alive.small in size quick and low ram usage.
+Aether is a Lightweight browser that feels alive. small in size quick and low ram usage.
 
 No clutter. No noise. and no bloat.
 
