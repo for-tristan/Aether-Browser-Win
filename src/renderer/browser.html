@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#8298b9">
+  <title>Aether</title>
+  <link rel="icon" href="../../assets/icon.png">
+  <link rel="stylesheet" href="css/browser.css">
+</head>
+<body>
+  <!-- GradientWaves animated background -->
+  <div id="gradientWavesBg" style="position:fixed;inset:0;z-index:0;overflow:hidden;"></div>
+
+  <main class="browser-window" id="browserWindow">
+    <header class="tabbar" id="dragHandle">
+      <div class="tabs" id="tabs" role="tablist" aria-label="Browser tabs"></div>
+      <button class="add-tab" id="newTab" title="New tab" aria-label="New tab"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg></button>
+      <div class="window-controls" aria-label="Window controls">
+        <button class="window-dot minimize" id="minimizeWindow" title="Minimize" aria-label="Minimize"></button>
+        <button class="window-dot maximize" id="scaleWindow" title="Maximize" aria-label="Maximize"></button>
+        <button class="window-dot close" id="closeWindow" title="Close" aria-label="Close"></button>
+      </div>
+    </header>
+
+    <!-- Bookmarks bar (toggleable) -->
+    <div class="bookmarks-bar hidden" id="bookmarksBar"></div>
+
+    <nav class="toolbar" aria-label="Browser toolbar">
+      <div class="nav-controls">
+        <button class="icon-button" id="backBtn" aria-label="Back" title="Back"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+        <button class="icon-button muted-icon" id="forwardBtn" aria-label="Forward" title="Forward"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <button class="icon-button" id="reloadBtn" aria-label="Reload" title="Reload"><svg class="reload-icon" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36L21 8"/><path d="M21 3v5h-5"/></svg></button>
+        <button class="icon-button" id="homeBtn" aria-label="Home" title="Home"><svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></button>
+      </div>
+      <form class="address-wrap" id="addressForm" autocomplete="off">
+        <svg class="address-search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="addressInput" autocomplete="off" spellcheck="false" aria-label="Search or enter a URL" placeholder="Search or enter a URL">
+        <button type="button" id="clearAddress" class="address-clear" aria-label="Clear address"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        <!-- Search suggestions dropdown -->
+        <div class="suggestions-dropdown hidden" id="suggestionsDropdown"></div>
+      </form>
+      <div class="toolbar-actions">
+        <button class="icon-button" id="bookmarkBtn" title="Bookmark this page" aria-label="Bookmark"><svg viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg></button>
+        <button class="icon-button" id="downloadsBtn" title="Downloads" aria-label="Downloads"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+        <div class="menu-wrap">
+          <button class="icon-button" id="menuBtn" title="Menu" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.6" fill="currentColor" stroke="none"/></svg></button>
+          <div class="menu-dropdown hidden" id="menuDropdown" role="menu">
+            <button class="menu-item" data-view="history" role="menuitem"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg><span>History</span></button>
+            <button class="menu-item" data-view="bookmarks" role="menuitem"><svg viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg><span>Bookmarks</span></button>
+            <button class="menu-item" data-view="downloads" role="menuitem"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Downloads</span></button>
+            <div class="menu-divider"></div>
+            <button class="menu-item" id="incognitoBtn" role="menuitem"><svg viewBox="0 0 24 24"><circle cx="8" cy="14" r="5"/><circle cx="16" cy="14" r="5"/><path d="M8 9V6M16 9V6"/></svg><span>New incognito window</span></button>
+            <button class="menu-item" data-view="settings" role="menuitem"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>Settings</span></button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="browser-body" id="browserBody">
+      <section class="page-area" id="pageArea">
+        <div class="home-content" id="homeContent">
+          <div class="hero-copy"><h1 id="greeting">Good afternoon</h1><p></p></div>
+          <form class="ai-search specular-button" id="aiSearchForm" data-specular>
+            <input id="aiSearchInput" placeholder="Search the web or ask anything..." autocomplete="off" aria-label="Search the web or ask anything">
+            
+            <!-- AI search suggestions dropdown (inside form so it positions relative to it) -->
+            <div class="ai-suggestions hidden" id="aiSuggestions"></div>
+          </form>
+          <div class="shortcuts" id="shortcuts"></div>
+        </div>
+
+        <div class="content-view hidden" id="contentView">
+          <div class="view-heading">
+            <span class="view-symbol" id="viewSymbol">◷</span>
+            <div>
+              <h2 id="viewTitle">History</h2>
+              <p id="viewDescription">Your recent activity, all in one place.</p>
+              <input type="text" id="historySearch" class="view-search hidden" placeholder="Search history...">
+            </div>
+          </div>
+          <div class="view-list" id="viewList"></div>
+          <div class="settings-panel hidden" id="settingsPanel">
+            <div class="setting-row">
+              <div class="setting-label"><strong>Search engine</strong><small>Used for searches from the address bar and home page</small></div>
+              <select id="settingSearchEngine"><option value="google">Google</option><option value="bing">Bing</option><option value="duckduckgo">DuckDuckGo</option></select>
+            </div>
+            <div class="setting-row">
+              <div class="setting-label"><strong>Show shortcuts</strong><small>Display shortcut tiles on the home page</small></div>
+              <label class="toggle"><input type="checkbox" id="settingShowShortcuts" checked><span class="toggle-slider"></span></label>
+            </div>
+            <div class="setting-row">
+              <div class="setting-label"><strong>Show weather card</strong><small>Display the weather card in the corner</small></div>
+              <label class="toggle"><input type="checkbox" id="settingShowWeather" checked><span class="toggle-slider"></span></label>
+            </div>
+            <div class="setting-row">
+              <div class="setting-label"><strong>Show bookmarks bar</strong><small>Display a bar with favorite bookmarks below the tab bar</small></div>
+              <label class="toggle"><input type="checkbox" id="settingShowBookmarksBar"><span class="toggle-slider"></span></label>
+            </div>
+            <div class="setting-row">
+              <div class="setting-label"><strong>Default browser</strong><small>Make Aether your default browser</small></div>
+              <button class="setting-btn" id="setDefaultBrowser">Set as default</button>
+            </div>
+            <div class="setting-row">
+              <div class="setting-label"><strong>Clear browsing data</strong><small>Remove history, cookies, cache, and other data</small></div>
+              <button class="setting-btn" id="showClearData">Clear data…</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <button class="weather-card" id="weatherCard" title="Weather — based on your location">
+        <span class="weather-sun-icon" id="weatherIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+        <span class="weather-copy"><strong id="weatherTemp">--°C</strong><small id="weatherCity">Locating…</small></span>
+      </button>
+    </section>
+
+    <!-- Find in page bar -->
+    <div class="find-bar hidden" id="findBar">
+      <input type="text" id="findInput" placeholder="Find in page…" autocomplete="off">
+      <span class="find-result" id="findResult"></span>
+      <button class="find-btn" id="findPrev" title="Previous (Shift+Enter)"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <button class="find-btn" id="findNext" title="Next (Enter)"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <button class="find-btn" id="findClose" title="Close (Esc)"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- Context menu (generic) -->
+    <div class="context-menu hidden" id="contextMenu"></div>
+    <!-- Tab context menu -->
+    <div class="context-menu hidden" id="tabContextMenu"></div>
+
+    <!-- Add Shortcut dialog -->
+    <div class="dialog-overlay hidden" id="addShortcutDialog">
+      <div class="dialog">
+        <h3>Add shortcut</h3>
+        <p>Enter a website address — Aether will fetch its icon and name automatically.</p>
+        <input type="text" id="shortcutUrlInput" placeholder="e.g. wikipedia.org" autocomplete="off">
+        <div class="dialog-actions">
+          <button class="dialog-btn cancel" id="shortcutCancel">Cancel</button>
+          <button class="dialog-btn primary" id="shortcutAdd">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clear browsing data dialog -->
+    <div class="dialog-overlay hidden" id="clearDataDialog">
+      <div class="dialog">
+        <h3>Clear browsing data</h3>
+        <p>Choose what to clear:</p>
+        <div class="cd-range">
+          <label>Time range:
+            <select id="cdRange">
+              <option value="hour">Last hour</option>
+              <option value="day">Last 24 hours</option>
+              <option value="all">All time</option>
+            </select>
+          </label>
+        </div>
+        <div class="cd-options">
+          <label><input type="checkbox" id="cdHistory" checked> Browsing history</label>
+          <label><input type="checkbox" id="cdBookmarks"> Bookmarks</label>
+          <label><input type="checkbox" id="cdCookies" checked> Cookies</label>
+          <label><input type="checkbox" id="cdCache" checked> Cached images and files</label>
+          <label><input type="checkbox" id="cdLocalstorage"> Local storage</label>
+          <label><input type="checkbox" id="cdPasswords"> Saved passwords</label>
+        </div>
+        <div class="dialog-actions">
+          <button class="dialog-btn cancel" id="clearDataCancel">Cancel</button>
+          <button class="dialog-btn primary danger" id="clearDataConfirm">Clear data</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Module scripts (order matters) -->
+  <script src="js/storage.js"></script>
+  <script src="js/tabs.js"></script>
+  <script src="js/bookmarks.js"></script>
+  <script src="js/history.js"></script>
+  <script src="js/downloads.js"></script>
+  <script src="js/shortcuts.js"></script>
+  <script src="js/weather.js"></script>
+  <script src="js/permissions.js"></script>
+  <script src="js/passwords.js"></script>
+  <script src="js/find.js"></script>
+  <script src="js/search-suggest.js"></script>
+  <script src="js/context-menu.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/ambient-light.js"></script>
+  <script src="js/gradient-waves.js"></script>
+  <script src="js/specular-button.js"></script>
+  <script src="js/browser.js"></script>
+
+
+</body>
+</html>
+
