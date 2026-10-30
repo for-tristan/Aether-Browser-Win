@@ -4,7 +4,7 @@
 
 <h1>Aether</h1>
 
-<p><strong>A Lightweight browser </strong></p>
+<p><strong>A Lightweight browser </strong></p>.
 
 <p>
   <a href="https://github.com/for-tristan/Aether-Browser-Win/releases/download/v1.1.0/AetherSetup-v1.1.0.exe"><img src="https://img.shields.io/badge/Download-Latest%20Release-blue?style=for-the-badge" alt="Download"></a>
