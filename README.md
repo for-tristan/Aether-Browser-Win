@@ -21,7 +21,7 @@
 
 ## Overview
 
-Aether is a Lightweight browser that feels alive. small in size quick and low ram usage.
+Aether is a Lightweight browser that feels alive. small in size, quick and low in ram usage.
 
 No clutter. No noise. and no bloat.
 
@@ -30,7 +30,7 @@ No clutter. No noise. and no bloat.
 ## Download & Install
 
 1. Go to **[Releases](../../releases/latest)**
-2. Download `Aether-Setup.exe`
+2. Download `AetherSetup.exe`
 3. Run the installer
 4. Open Aether and start browsing
 
