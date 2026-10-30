@@ -30,7 +30,7 @@ No clutter. No noise. and no bloat.
 ## Download & Install
 
 1. Go to **[Releases](../../releases/latest)**
-2. Download `AetherSetup.exe`
+2. Download `AetherSetup-v1.0.0.exe`
 3. Run the installer
 4. Open Aether and start browsing
 
