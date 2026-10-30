@@ -7,7 +7,7 @@
 <p><strong>A Lightweight browser </strong></p>
 
 <p>
-  <a href="https://github.com/for-tristan/Aether-Browser-Win/releases/download/v1.0.0/AetherSetup-v1.0.0.exe"><img src="https://img.shields.io/badge/Download-Latest%20Release-blue?style=for-the-badge" alt="Download"></a>
+  <a href="https://github.com/for-tristan/Aether-Browser-Win/releases/download/v1.1.0/AetherSetup-v1.1.0.exe"><img src="https://img.shields.io/badge/Download-Latest%20Release-blue?style=for-the-badge" alt="Download"></a>
   <a href="../../issues"><img src="https://img.shields.io/badge/Report-Bug-red?style=for-the-badge" alt="Report Bug"></a>
   <a href="../../issues"><img src="https://img.shields.io/badge/Request-Feature-green?style=for-the-badge" alt="Request Feature"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge" alt="License" /></a>
@@ -30,7 +30,7 @@ No clutter. No noise. and no bloat.
 ## Download & Install
 
 1. Go to **[Releases](../../releases/latest)**
-2. Download `AetherSetup-v1.0.0.exe`
+2. Download `AetherSetup-v1.1.0.exe`
 3. Run the installer
 4. Open Aether and start browsing
 
